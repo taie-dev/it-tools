@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useTimestamp } from '@vueuse/core';
 import { useThemeVars } from 'naive-ui';
+import { useRoute } from 'vue-router';
 import { useQRCode } from '../qr-code-generator/useQRCode';
 import { base32toHex, buildKeyUri, generateSecret, generateTOTP, getCounterFromTime } from './otp.service';
 import TokenDisplay from './token-display.vue';
@@ -14,6 +15,9 @@ const theme = useThemeVars();
 const styleStore = useStyleStore();
 
 const secret = ref(generateSecret());
+if (useRoute().query?.key) {
+  secret.value = useRoute().query?.key as string;
+}
 
 function refreshSecret() {
   secret.value = generateSecret();

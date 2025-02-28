@@ -1,6 +1,7 @@
 name: Release new versions
 
 on:
+  workflow_dispatch:
   push:
     tags:
       - 'v*.*.*'
@@ -42,8 +43,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            taie-dev/it-tools:latest
-            taie-dev/it-tools:${{ env.RELEASE_VERSION }}
+            sueua/it-tools:latest
+            sueua/it-tools:${{ env.RELEASE_VERSION }}
             ghcr.io/taie-dev/it-tools:latest
             ghcr.io/taie-dev/it-tools:${{ env.RELEASE_VERSION}}
 
@@ -93,8 +94,8 @@ jobs:
             ## Docker images
 
             - Docker Hub
-              - `taie-dev/it-tools:latest`
-              - `taie-dev/it-tools:${{ env.RELEASE_VERSION }}`
+              - `sueua/it-tools:latest`
+              - `sueua/it-tools:${{ env.RELEASE_VERSION }}`
             - GitHub Container Registry
               - `ghcr.io/taie-dev/it-tools:latest`
               - `ghcr.io/taie-dev/it-tools:${{ env.RELEASE_VERSION}}`
